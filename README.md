@@ -568,7 +568,8 @@ Ping from PC-VLAN10-1 to SRV1
 
 ## 🛠️ACLs Configuration
 
-### 1. STD ACL 1 — Block Sales VLANs from reaching Servers entirely
+### STD ACL 1 — Block Sales VLANs from reaching Servers entirely
+Policy: Sales (VLAN 30) at HQ and Branch should have no access to the server network.
 
 Before ACL
 <img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/d3789324-b639-43c1-a7d2-dfdf3db1193e" />
@@ -589,9 +590,11 @@ DO WR MEM
 After ACL
 <img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/c19485d2-b5b1-4fb6-ae59-b3b69a0a45fc" />
 
-### 2.
+### STD ACL 2 — Block Branch HR from HQ HR subnet
 
 Before ACL
+Policy: Branch HR (192.168.11.0/24) should not communicate with HQ HR (192.168.10.0/24) — separate departments, separate policies.
+
 img
 
 Config
