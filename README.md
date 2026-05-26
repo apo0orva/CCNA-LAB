@@ -589,4 +589,197 @@ DO WR MEM
 After ACL
 <img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/c19485d2-b5b1-4fb6-ae59-b3b69a0a45fc" />
 
-2. STD ACL 2 — Block Branch HR from accessing HQ HR subnet
+### 2.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 3.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 4.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 5.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 6.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 7.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 8.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 9.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 10.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 11.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 12.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 13.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 14.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 15.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
+
+### 16.
+
+Before ACL
+img
+
+Config
+```cisco
+A
+```
+
+After ACL
+img
