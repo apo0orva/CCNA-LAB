@@ -592,7 +592,7 @@ After ACL
 ### 2.
 
 Before ACL
-img
+<img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/106723bf-819e-479b-90bf-d3073f377ccb" />
 
 Config
 ```cisco
