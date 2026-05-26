@@ -564,3 +564,8 @@ SRV1 HTTP/HTTPS Configuration
 Ping from PC-VLAN10-1 to SRV1
 
 <img width="700" height="317" alt="image" src="https://github.com/user-attachments/assets/9d6a340a-e2b1-4fdf-a721-5aa1936daf28" />
+
+
+## ACLs Configuration
+
+1. STD ACL 1 — Block Sales VLANs from reaching Servers entirely
