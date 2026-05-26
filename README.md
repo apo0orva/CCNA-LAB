@@ -591,11 +591,10 @@ After ACL
 <img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/c19485d2-b5b1-4fb6-ae59-b3b69a0a45fc" />
 
 ### STD ACL 2 — Block Branch HR from HQ HR subnet
-
-Before ACL
 Policy: Branch HR (192.168.11.0/24) should not communicate with HQ HR (192.168.10.0/24) — separate departments, separate policies.
 
-img
+Before ACL
+<img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/106723bf-819e-479b-90bf-d3073f377ccb" />
 
 Config
 ```cisco
