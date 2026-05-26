@@ -570,5 +570,13 @@ Ping from PC-VLAN10-1 to SRV1
 
 1. STD ACL 1 — Block Sales VLANs from reaching Servers entirely
 ```cisco
-aaa
+IP ACCess-list Standard BLOCK_TOWARD_SRV
+DENY 192.168.30.0 0.0.0.255
+DENY 192.168.31.0 0.0.0.255
+PERMIT ANY
+INT G0/0.210
+IP ACCess-group BLOCK_TOWARD_SRV OUT
+INT G0/0.211
+IP ACCess-group BLOCK_TOWARD_SRV OUT
+DO WR MEM
 ```
