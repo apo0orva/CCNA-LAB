@@ -612,7 +612,9 @@ DO WR MEM
 ```
 
 After ACL
-img
+
+<img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/cbec6b01-670b-4968-b600-ad69a7f1640b" />
+
 
 ### 3.
 
