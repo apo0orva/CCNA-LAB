@@ -636,6 +636,9 @@ ACCESS-CLASS REMOTE_IT_ACCESS IN
 
 After ACL
 
+<img width="812" height="421" alt="image" src="https://github.com/user-attachments/assets/493eed76-4645-4f79-84ca-25a7e4b60833" />
+<img width="812" height="464" alt="image" src="https://github.com/user-attachments/assets/dbc01214-5768-42e6-89f0-4c590ef3405a" />
+
 
 
 ### 4.
