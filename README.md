@@ -620,6 +620,7 @@ After ACL
 Policy: Only IT staff (HQ + Branch IT VLANs) can remotely manage routers. On R1, R2, R3, R4 & MS1.
 
 Before ACL
+
 <img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/a9bd1494-5a0b-4fa5-af02-e8be0a5cfc05" />
 
 
@@ -634,7 +635,8 @@ ACCESS-CLASS REMOTE_IT_ACCESS IN
 ```
 
 After ACL
-img
+
+
 
 ### 4.
 
