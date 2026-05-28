@@ -616,14 +616,20 @@ After ACL
 <img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/cbec6b01-670b-4968-b600-ad69a7f1640b" />
 
 
-### 3.
+### STD ACL 3 — Restrict VTY (SSH/Telnet) access to IT only
+Policy: Only IT staff (HQ + Branch IT VLANs) can remotely manage routers. On R1, R2, R3, R4 & MS1.
 
 Before ACL
 img
 
 Config
 ```cisco
-A
+IP ACCESS-LIST STANDARD REMOTE_IT_ACCESS
+PERMIT 192.168.20.0 0.0.0.255
+PERMIT 192.168.21.0 0.0.0.255
+DENY ANY
+LINE VTY 0 5
+ACCESS-CLASS REMOTE_IT_ACCESS IN
 ```
 
 After ACL
