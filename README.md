@@ -564,3 +564,176 @@ SRV1 HTTP/HTTPS Configuration
 Ping from PC-VLAN10-1 to SRV1
 
 <img width="700" height="317" alt="image" src="https://github.com/user-attachments/assets/9d6a340a-e2b1-4fdf-a721-5aa1936daf28" />
+
+
+## 🛠️ACLs Configuration
+
+### STD ACL 1 — Block Sales VLANs from reaching Servers entirely
+Policy: Sales (VLAN 30) at HQ and Branch should have no access to the server network.
+
+Before ACL
+
+<img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/d3789324-b639-43c1-a7d2-dfdf3db1193e" />
+
+Config
+```cisco
+IP ACCess-list Standard BLOCK_TOWARD_SRV
+DENY 192.168.30.0 0.0.0.255
+DENY 192.168.31.0 0.0.0.255
+PERMIT ANY
+INT G0/0.210
+IP ACCess-group BLOCK_TOWARD_SRV OUT
+INT G0/0.211
+IP ACCess-group BLOCK_TOWARD_SRV OUT
+DO WR MEM
+```
+
+After ACL
+
+<img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/c19485d2-b5b1-4fb6-ae59-b3b69a0a45fc" />
+
+### STD ACL 2 — Block Branch HR from HQ HR subnet
+Policy: Branch HR (192.168.11.0/24) should not communicate with HQ HR (192.168.10.0/24) — separate departments, separate policies.
+
+Before ACL
+
+<img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/106723bf-819e-479b-90bf-d3073f377ccb" />
+
+Config
+```cisco
+IP ACCESS-LIST STANDARD BLOCK_BRANCH_HR_TO_HQ_HR
+DENY 192.168.11.0 0.0.0.255
+PERMIT ANY
+INT G0/1
+IP ACCESS-GROUP BLOCK_BRANCH_HR_TO_HQ_HR IN
+INT G0/2
+IP ACCESS-GROUP BLOCK_BRANCH_HR_TO_HQ_HR IN
+DO WR MEM
+```
+
+After ACL
+
+<img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/cbec6b01-670b-4968-b600-ad69a7f1640b" />
+
+
+### STD ACL 3 — Restrict VTY (SSH/Telnet) access to IT only
+Policy: Only IT staff (HQ + Branch IT VLANs) can remotely manage routers. On R1, R2, R3, R4 & MS1.
+
+Before ACL
+
+<img width="812" height="820" alt="image" src="https://github.com/user-attachments/assets/a9bd1494-5a0b-4fa5-af02-e8be0a5cfc05" />
+
+
+Config
+```cisco
+IP ACCESS-LIST STANDARD REMOTE_IT_ACCESS
+PERMIT 192.168.20.0 0.0.0.255
+PERMIT 192.168.21.0 0.0.0.255
+DENY ANY
+LINE VTY 0 5
+ACCESS-CLASS REMOTE_IT_ACCESS IN
+DO WR MEM
+```
+
+After ACL
+
+<img width="812" height="421" alt="image" src="https://github.com/user-attachments/assets/493eed76-4645-4f79-84ca-25a7e4b60833" />
+<img width="812" height="464" alt="image" src="https://github.com/user-attachments/assets/dbc01214-5768-42e6-89f0-4c590ef3405a" />
+
+
+
+### 4. Block Branch Sales from reaching HQ entirely
+
+Before ACL
+
+<img width="812" height="715" alt="image" src="https://github.com/user-attachments/assets/a95926a6-60fd-4058-afdf-d4998f5a6c8c" />
+
+Config
+```cisco
+IP ACCESS-LIST STANDARD BLOCK_BRANCH_SALES_TO_HQ
+DENY 192.168.31.0 0.0.0.255
+PERMIT ANY
+INT G0/1
+IP ACCESS-GROUP BLOCK_BRANCH_SALES_TO_HQ IN
+INT G0/2
+IP ACCESS-GROUP BLOCK_BRANCH_SALES_TO_HQ IN
+DO WR MEM
+```
+
+After ACL
+
+<img width="812" height="715" alt="image" src="https://github.com/user-attachments/assets/111798b5-7d95-4955-b150-1e6596d70cc1" />
+
+
+### 5. Only R4 Branch subnets can trigger OSPF neighborship (VTY lock on MS1)
+
+Config
+```cisco
+IP ACCESS-LIST STANDARD CORE_MGMT_ONLY
+PERMIT HOST 10.0.0.13
+PERMIT HOST 10.0.0.14
+PERMIT 192.168.20.0 0.0.0.255
+DENY ANY
+
+LINE VTY 0 5
+ACCESS-CLASS CORE_MGMT_ONLY IN
+DO WR MEM
+```
+
+### 6. HR can access Web Server (HTTP/HTTPS) but NOT ping it
+
+Before ACL
+
+<img width="812" height="702" alt="image" src="https://github.com/user-attachments/assets/827678cb-eeaf-4a18-b516-469c2bfa6226" />
+<img width="812" height="702" alt="image" src="https://github.com/user-attachments/assets/46ab7dc3-4ad5-4dc4-b276-833fa2382ccd" />
+
+
+Config
+```cisco
+IP ACCESS-LIST EXTENDED HR_TO_WEB
+DENY ICMP 192.168.10.0 0.0.0.255 HOST 210.99.99.2
+PERMIT TCP 192.168.10.0 0.0.0.255 HOST 210.99.99.2 EQ 80
+PERMIT TCP 192.168.10.0 0.0.0.255 HOST 210.99.99.2 EQ 443
+PERMIT IP 192.168.10.0 0.0.0.255 ANY
+INT VLAN 10
+IP ACCESS-GROUP HR_TO_WEB IN
+DO WR MEM
+```
+
+After ACL
+
+<img width="812" height="702" alt="image" src="https://github.com/user-attachments/assets/c4ad4ef7-a8f3-495c-82e9-50bb378ac153" />
+<img width="812" height="702" alt="image" src="https://github.com/user-attachments/assets/1dff255e-781d-49c5-a3d3-e5dfd87a3a75" />
+
+
+
+### 7. Sales (.31) can only access the Web Server (HTTP only, no HTTPS, no DNS directly)
+
+Config
+```cisco
+IP ACCESS-LIST EXTENDED SALES_RESTRICTED
+PERMIT TCP 192.168.31.0 0.0.0.255 HOST 210.99.99.2 EQ 80
+DENY TCP 192.168.31.0 0.0.0.255 HOST 210.99.99.2 EQ 443
+DENY UDP 192.168.31.0 0.0.0.255 HOST 210.99.99.6 EQ 53
+DENY TCP 192.168.31.0 0.0.0.255 HOST 210.99.99.6 EQ 53
+PERMIT IP ANY ANY
+INT G0/0.30
+IP ACCESS-GROUP SALES_RESTRICTED IN
+DO WR MEM
+```
+
+### 8. Permit only IT to reach the ISP (internet) via 8.8.8.8
+
+Config
+```cisco
+IP ACCESS-LIST EXTENDED IT_TO_ISP
+PERMIT IP 192.168.20.0 0.0.0.255 HOST 8.8.8.8
+PERMIT IP 192.168.21.0 0.0.0.255 HOST 8.8.8.8
+DENY IP 192.168.10.0 0.0.0.255 HOST 8.8.8.8
+DENY IP 192.168.11.0 0.0.0.255 HOST 8.8.8.8
+DENY IP 192.168.30.0 0.0.0.255 HOST 8.8.8.8
+DENY IP 192.168.31.0 0.0.0.255 HOST 8.8.8.8
+INT SE0/3/0
+IP ACCESS-GROUP IT_TO_ISP OUT
+DO WR MEM
+```
