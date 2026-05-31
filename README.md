@@ -680,7 +680,7 @@ ACCESS-CLASS CORE_MGMT_ONLY IN
 DO WR MEM
 ```
 
-### 6.
+### 6. HR can access Web Server (HTTP/HTTPS) but NOT ping it
 
 Before ACL
 img
