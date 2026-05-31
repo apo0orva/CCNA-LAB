@@ -665,18 +665,20 @@ After ACL
 <img width="812" height="715" alt="image" src="https://github.com/user-attachments/assets/111798b5-7d95-4955-b150-1e6596d70cc1" />
 
 
-### 5.
-
-Before ACL
-img
+### 5. Only R4 Branch subnets can trigger OSPF neighborship (VTY lock on MS1)
 
 Config
 ```cisco
-A
-```
+IP ACCESS-LIST STANDARD CORE_MGMT_ONLY
+PERMIT HOST 10.0.0.13
+PERMIT HOST 10.0.0.14
+PERMIT 192.168.20.0 0.0.0.255
+DENY ANY
 
-After ACL
-img
+LINE VTY 0 5
+ACCESS-CLASS CORE_MGMT_ONLY IN
+DO WR MEM
+```
 
 ### 6.
 
