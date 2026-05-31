@@ -683,7 +683,10 @@ DO WR MEM
 ### 6. HR can access Web Server (HTTP/HTTPS) but NOT ping it
 
 Before ACL
-img
+
+<img width="812" height="702" alt="image" src="https://github.com/user-attachments/assets/827678cb-eeaf-4a18-b516-469c2bfa6226" />
+<img width="812" height="702" alt="image" src="https://github.com/user-attachments/assets/46ab7dc3-4ad5-4dc4-b276-833fa2382ccd" />
+
 
 Config
 ```cisco
@@ -698,7 +701,8 @@ DO WR MEM
 ```
 
 After ACL
-img
+
+
 
 ### 7.
 
