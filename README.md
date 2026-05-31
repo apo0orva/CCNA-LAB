@@ -645,7 +645,8 @@ After ACL
 ### 4. Block Branch Sales from reaching HQ entirely
 
 Before ACL
-img
+
+<img width="812" height="715" alt="image" src="https://github.com/user-attachments/assets/a95926a6-60fd-4058-afdf-d4998f5a6c8c" />
 
 Config
 ```cisco
@@ -660,7 +661,9 @@ DO WR MEM
 ```
 
 After ACL
-img
+
+<img width="812" height="715" alt="image" src="https://github.com/user-attachments/assets/111798b5-7d95-4955-b150-1e6596d70cc1" />
+
 
 ### 5.
 
